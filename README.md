@@ -1,3 +1,5 @@
+![Panel Graphs — CPU, RAM and GPU monitoring](docs/banner.png)
+
 # Panel Graphs
 
 A small GNOME Shell extension that puts CPU, RAM and NVIDIA GPU readings next to the clock, with live history graphs.
