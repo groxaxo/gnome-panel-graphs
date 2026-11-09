@@ -4,13 +4,14 @@ import St from 'gi://St';
 
 import {recordSample, sampleX} from './history.js';
 export function createGraph(color) {
-    const graph = new St.DrawingArea({width: 72, height: 22,
+    const graph = new St.DrawingArea({width: 100, height: 26,
         y_align: Clutter.ActorAlign.CENTER});
     graph._samples = [];
     const rgb = color.match(/[a-f\d]{2}/gi).map(c => parseInt(c, 16) / 255);
     graph.connect('repaint', area => {
         const cr = area.get_context();
-        const [width, height] = area.get_surface_size();
+        const [totalWidth, height] = area.get_surface_size();
+        const width = totalWidth - 28;
         const pad = 2;
         const baseline = height - pad;
         cr.setSourceRGBA(1, 1, 1, 0.055);
@@ -47,6 +48,19 @@ export function createGraph(color) {
             const last = points[points.length - 1];
             cr.arc(last[0], last[1], 1.5, 0, 2 * Math.PI);
             cr.fill();
+        }
+        // Tick marks and labels sit outside the plotted area.
+        cr.setSourceRGBA(1, 1, 1, 0.7);
+        cr.setLineWidth(0.6);
+        cr.selectFontFace('Sans', 0, 0);
+        cr.setFontSize(7);
+        for (const [value, label] of [[1, '100%'], [0.5, '50%'], [0, '0%']]) {
+            const y = baseline - value * (height - 2 * pad);
+            cr.moveTo(width, y);
+            cr.lineTo(width + 3, y);
+            cr.stroke();
+            cr.moveTo(width + 5, Math.max(7, Math.min(height - 1, y + 2)));
+            cr.showText(label);
         }
         cr.$dispose();
     });

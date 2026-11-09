@@ -1,5 +1,5 @@
 // All history timestamps are monotonic seconds, not wall-clock time.
-export const WINDOW_SECONDS = 30;
+export const WINDOW_SECONDS = 15;
 export function recordSample(samples, now, fraction) {
     const recent = samples.filter(s => s.time >= now - WINDOW_SECONDS && s.time <= now);
     if (Number.isFinite(fraction))
