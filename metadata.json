@@ -1,0 +1,7 @@
+{
+  "uuid": "system-bars@local",
+  "name": "Panel Graphs",
+  "description": "CPU, RAM and NVIDIA GPU readings with 30-second history graphs, refreshed every second.",
+  "shell-version": ["50"],
+  "version": 1
+}
