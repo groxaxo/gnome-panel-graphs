@@ -24,9 +24,11 @@ Memory uses decimal **GB**, so a GPU sold as having 12 GiB can appear as 12.9 GB
 
 Requirements: GNOME Shell 50, Python 3 for packaging, and NVIDIA drivers providing `nvidia-smi` for GPU readings. No npm packages or Vitals installation are needed.
 
-From the repository directory:
+Clone the repository and install:
 
 ```sh
+git clone https://github.com/groxaxo/gnome-panel-graphs.git
+cd gnome-panel-graphs
 ./scripts/install.sh
 ```
 
