@@ -81,6 +81,25 @@ Source files:
 
 At one-second intervals, GPU polling launches `nvidia-smi` once per second. Actual overhead depends on the driver and system. There are no network requests or telemetry.
 
+## Use with an AI agent
+
+A portable [Panel Graphs skill](skills/panel-graphs/SKILL.md) teaches agents how to install, diagnose, customize, test, and package the extension. [AGENTS.md](AGENTS.md) points repository-aware agents to it. It works as instructions for LLM agents with file and terminal tools; automatic skill discovery depends on the host application.
+
+For Codex, copy the skill folder from the checkout:
+
+```sh
+mkdir -p ~/.codex/skills
+cp -R skills/panel-graphs ~/.codex/skills/
+```
+
+Start a new agent session if needed for discovery, then ask:
+
+```text
+Use $panel-graphs to inspect my GNOME setup and install this extension.
+```
+
+For other agents, ask them to read `skills/panel-graphs/SKILL.md` before working on the project. No API key or hosted agent service is required.
+
 ## Contributing
 
 Bug reports and pull requests are welcome. Include your GNOME version, Linux distribution, CPU/GPU model, and relevant extension errors from `journalctl --user`. Useful additions include AMD sensors, other GPU backends, configurable layouts, and testing on other GNOME versions. Please avoid posting logs containing private information.
